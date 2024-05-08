@@ -1,0 +1,202 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block page_title %}
+
+Make Crime Analysis
+
+{% endblock page_title %}
+
+{% block own_css_files %}
+    
+    <style>
+
+        body {
+            margin: 0; 
+            padding: 0; 
+            background-color : #FDF7E4;
+            background-image: url('{% static 'img/law2.jpg' %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;  
+        }
+        .col-3 {
+            height: 90vh; 
+            display: flex; 
+    
+        }
+
+        .result-text {
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            color:white;
+            text-align:center;
+        }
+        /* Custom CSS */
+        .custom-select {
+            background-color: #444; /* bg color */
+            color: #fff; /* text color */
+            border-color: #555; /* line color */
+        }
+        
+        /* opened menu color */
+        .custom-select option {
+            background-color: #222;
+            color: #fff;
+        }
+        
+        .custom-input {
+            background-color: #444; /* Arka plan rengi */
+            color: #fff; 
+            border-color: #555;
+            font-size: 20px;
+            padding-left: 15px;     
+            padding-right: 15px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 10px; 
+        }
+
+        .full-width-input {
+            width: 100%;
+            margin: 0;
+        }
+
+        ::placeholder {
+            color: #fff;
+            opacity: 0.5; /* Firefox */
+          }
+    </style>
+
+{% endblock own_css_files %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+
+        <div class="col-3">
+
+        </div>
+
+        <div class="col-6">
+            <!--content-->
+            <form action="{% url 'make_crime_analysis_index_page_link' %}" method = "POST">
+
+                {% csrf_token %}
+
+                <!--Age Category-->
+                <select class="form-select form-select-lg mb-3 custom-select" aria-label=".form-select-lg example" name = "age">
+                    <option selected>Select Age Category</option>
+                    <option value="<18">&lt; 18</option>
+                    <option value="18-24">18 - 24</option>
+                    <option value="25-44">25 - 44</option>
+                    <option value="45-64">45 - 64</option>
+                    <option value="65+">65+</option>
+                </select>
+                <!--Age Category-->
+
+                <!--Season-->
+                <select class="form-select form-select-lg mb-3 custom-select" aria-label=".form-select-lg example" name = "season">
+                    <option selected>Select Arrest Season</option>
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="fall">Fall</option>
+                    <option value="winter">Winter</option>
+                </select>
+                <!--Season-->
+
+                <!--Gender-->
+                <select class="form-select form-select-lg mb-3 custom-select" aria-label=".form-select-lg example" name = "gender">
+                    <option selected>Select Perpetrator&apos;s Gender </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <!--Gender-->
+
+                <!--Race-->
+                <select class="form-select form-select-lg mb-3 custom-select" aria-label=".form-select-lg example" name = "race">
+                    <option selected>Select Perpetrator&apos;s Race</option>
+                    <option value="BLACK">BLACK</option>
+                    <option value="WHITE">WHITE</option>
+                    <option value="ASIAN / PACIFIC ISLANDER">ASIAN / PACIFIC ISLANDER</option>
+                    <option value="WHITE HISPANIC">WHITE HISPANIC</option>
+                    <option value="BLACK HISPANIC">BLACK HISPANIC</option>
+                    <option value="AMERICAN INDIAN/ALASKAN NATIVE">AMERICAN INDIAN/ALASKAN NATIVE</option>
+                    <option value="UNKNOWN">UNKNOWN</option>
+                </select>
+                <!--Race-->
+
+                <!--Borough-->
+                <select class="form-select form-select-lg mb-3 custom-select" aria-label=".form-select-lg example" name = "borough">
+                    <option selected>Select Borough of Arrest</option>
+                    <option value="b">Bronx</option>
+                    <option value="s">Staten Island</option>
+                    <option value="k">Brooklyn</option>
+                    <option value="m">Manhattan</option>
+                    <option value="q">Queens</option>
+                </select>
+                <!--Borough-->
+
+                <!--Level of Offense-->
+                <select class="form-select form-select-lg mb-3 custom-select" aria-label=".form-select-lg example" name = "offense">
+                    <option selected>Select Level of Offense</option>
+                    <option value="felony">Felony</option>
+                    <option value="misdemeanor">Misdemeanor</option>
+                    <option value="violation">Violation</option>
+                </select>
+                <!--Level of Offense-->
+
+
+                <!--PD CODE-->
+                <div class="mb-3">
+                    <input class="custom-input full-width-input" type="text" name="pdcd" class = "form-control" placeholder="PD_CD">
+                </div>
+                <!--PD CODE-->
+
+                <!--KY CODE-->
+                <div class="mb-3">
+                    <input class="custom-input full-width-input" type="text" name="kycd" class = "form-control" placeholder="KY_CD">
+                </div>
+                <!--KY CODE-->
+
+                <!--Precinct-->
+                <div class="mb-3">
+                    <input class="custom-input full-width-input" type="text" name="precinct" class = "form-control" placeholder="Precinct where the arrest occurred">
+                </div>
+                <!--Precinct-->
+
+                <!--Jurisdiction -->
+                <div class="mb-3">
+                    <input class="custom-input full-width-input" type="text" name="jurisdiction" class = "form-control" placeholder="Jurisdiction Code">
+                </div>
+                <!--Jurisdiction -->
+
+                <!--Latitude -->
+                <div class="mb-3">
+                    <input class="custom-input full-width-input" type="text" name="latitude" class = "form-control" placeholder="Latitude coordinate for Global Coordinate System">
+                </div>
+                <!--Latitude -->
+
+                <!--Longitude -->
+                <div class="mb-3">
+                    <input class="custom-input full-width-input" type="text" name="longitude" class = "form-control" placeholder="Longitude coordinate for Global Coordinate System">
+                </div>
+                <!--Longitude -->
+
+                <button style="width: 100%;font-size: 20px;" class= "btn btn-primary mb-3" type="submit">Send</button>
+
+                <div class="mb-3">
+                    {% if isOk %}
+                        <p class="result-text" style="background-color:black;">{{code}}XXXX</p>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

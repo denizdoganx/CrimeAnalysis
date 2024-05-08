@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block page_title %}
+Home
+{% endblock page_title %}
+
+{% block own_css_files %}
+
+<style>
+    body {
+        margin: 0; 
+        padding: 0; 
+        background-color : #FDF7E4;
+        background-image: url('{% static 'img/law2.jpg' %}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;  
+    }
+    .col-12 {
+        height: 90vh; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+    }
+</style>
+
+{% endblock own_css_files %}
+
+
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!--content-->
+            <button type="button" class="btn btn-primary">Getting Started</button>
+        </div>
+    </div>
+</div> 
+
+{% endblock content %}
